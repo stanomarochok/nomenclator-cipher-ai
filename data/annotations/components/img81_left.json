@@ -1,0 +1,205 @@
+{
+  "version": "5.6.0a0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          1507.1428571428576,
+          339.2857142857147
+        ],
+        [
+          2678.571428571429,
+          489.2857142857147
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-page-number",
+      "points": [
+        [
+          800.0000000000003,
+          489.2857142857147
+        ],
+        [
+          921.4285714285717,
+          575.0000000000003
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          2135.7142857142862,
+          1696.4285714285718
+        ],
+        [
+          3121.4285714285716,
+          3453.5714285714284
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          1028.571428571429,
+          1767.8571428571431
+        ],
+        [
+          1985.7142857142862,
+          3475.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "page-number",
+      "points": [
+        [
+          735.714285714286,
+          4153.571428571428
+        ],
+        [
+          857.1428571428575,
+          4260.714285714286
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          792.8571428571431,
+          346.4285714285718
+        ],
+        [
+          1307.1428571428576,
+          489.2857142857147
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-nulls",
+      "points": [
+        [
+          1942.8571428571431,
+          1125.0000000000002
+        ],
+        [
+          2900.0000000000005,
+          1289.2857142857147
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          1035.714285714286,
+          610.714285714286
+        ],
+        [
+          3200.0,
+          610.714285714286
+        ],
+        [
+          3185.714285714286,
+          1046.4285714285718
+        ],
+        [
+          1735.714285714286,
+          1039.2857142857147
+        ],
+        [
+          1735.714285714286,
+          1460.714285714286
+        ],
+        [
+          1042.8571428571433,
+          1475.0000000000002
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "polygon",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          757.1428571428575,
+          1510.714285714286
+        ],
+        [
+          2750.0000000000005,
+          1689.2857142857144
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          714.2857142857146,
+          310.71428571428606
+        ],
+        [
+          3335.714285714286,
+          4075.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "img81_left.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

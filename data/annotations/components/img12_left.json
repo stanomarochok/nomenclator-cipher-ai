@@ -1,0 +1,145 @@
+{
+  "version": "5.2.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          1250.877192982456,
+          154.38596491228068
+        ],
+        [
+          2077.1929824561403,
+          328.07017543859644
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          1063.157894736842,
+          305.2631578947368
+        ],
+        [
+          2599.9999999999995,
+          478.9473684210526
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          750.0,
+          440.0
+        ],
+        [
+          2947.5,
+          820.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          800.0,
+          857.5
+        ],
+        [
+          2880.0,
+          1140.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          807.5,
+          1175.0
+        ],
+        [
+          2807.5,
+          1457.5
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-nulls",
+      "points": [
+        [
+          775.0,
+          1492.5
+        ],
+        [
+          2897.5,
+          1682.5
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          777.5,
+          1837.5
+        ],
+        [
+          1417.5,
+          2465.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          1627.5,
+          1840.0
+        ],
+        [
+          2242.5,
+          2397.5
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    }
+  ],
+  "imagePath": "img12_left.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

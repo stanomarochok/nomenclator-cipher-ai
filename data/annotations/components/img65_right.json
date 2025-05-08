@@ -1,0 +1,99 @@
+{
+  "version": "5.5.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          2686.8421052631584,
+          226.3157894736842
+        ],
+        [
+          155.2631578947371,
+          3968.421052631579
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "page-number",
+      "points": [
+        [
+          2681.5789473684217,
+          4031.578947368421
+        ],
+        [
+          2828.9473684210534,
+          4131.578947368421
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-page-number",
+      "points": [
+        [
+          2428.9473684210534,
+          236.8421052631579
+        ],
+        [
+          2628.9473684210534,
+          389.47368421052636
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          312.121212121212,
+          672.7272727272727
+        ],
+        [
+          875.757575757576,
+          800.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          784.848484848485,
+          296.96969696969694
+        ],
+        [
+          1660.60606060606,
+          445.45454545454544
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "img65_right.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

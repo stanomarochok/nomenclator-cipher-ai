@@ -1,0 +1,207 @@
+{
+  "version": "5.5.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          0,
+          273.6842105263158
+        ],
+        [
+          52.63157894736878,
+          4052.631578947369
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          89.47368421052624,
+          300.0
+        ],
+        [
+          2757.894736842105,
+          4047.368421052631
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "page-number",
+      "points": [
+        [
+          2631.5789473684217,
+          4078.947368421053
+        ],
+        [
+          2810.5263157894733,
+          4184.210526315789
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-page-number",
+      "points": [
+        [
+          2357.894736842105,
+          326.3157894736842
+        ],
+        [
+          2557.894736842105,
+          489.4736842105263
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          266.6666666666665,
+          337.2549019607843
+        ],
+        [
+          1223.5294117647054,
+          480.3921568627451
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          1894.1176470588234,
+          400.0
+        ],
+        [
+          927.4509803921565,
+          584.313725490196
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          221.56862745098033,
+          564.7058823529412
+        ],
+        [
+          2582.3529411764703,
+          941.1764705882352
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          282.3529411764707,
+          952.9411764705882
+        ],
+        [
+          1817.6470588235297,
+          1170.5882352941176
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-nulls",
+      "points": [
+        [
+          254.90196078431381,
+          1186.2745098039215
+        ],
+        [
+          1286.2745098039213,
+          1290.1960784313726
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          258.82352941176487,
+          1411.764705882353
+        ],
+        [
+          1445.0980392156862,
+          3713.725490196078
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          1562.745098039216,
+          1368.627450980392
+        ],
+        [
+          2492.156862745098,
+          3225.4901960784314
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "img35_right.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

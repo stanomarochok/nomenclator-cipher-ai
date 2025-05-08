@@ -1,0 +1,207 @@
+{
+  "version": "5.5.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          0,
+          315.7894736842105
+        ],
+        [
+          76.31578947368416,
+          4015.7894736842104
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          2718.421052631579,
+          215.78947368421055
+        ],
+        [
+          197.36842105263167,
+          4005.263157894737
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          0,
+          516.2162162162163
+        ],
+        [
+          48.64864864864876,
+          983.7837837837837
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          256.75675675675666,
+          570.2702702702703
+        ],
+        [
+          2437.8378378378375,
+          1045.945945945946
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          2275.675675675676,
+          262.1621621621622
+        ],
+        [
+          532.4324324324325,
+          437.83783783783787
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          2300.0,
+          232.43243243243245
+        ],
+        [
+          2705.405405405406,
+          424.3243243243243
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-nulls",
+      "points": [
+        [
+          435.135135135135,
+          1097.2972972972973
+        ],
+        [
+          2324.324324324324,
+          1254.0540540540542
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          255.17241379310326,
+          1265.5172413793105
+        ],
+        [
+          1268.9655172413795,
+          3441.379310344828
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          1272.4137931034484,
+          1258.6206896551726
+        ],
+        [
+          2193.1034482758623,
+          1527.5862068965519
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          0,
+          1572.4137931034484
+        ],
+        [
+          62.06896551724094,
+          3379.3103448275865
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "page-number",
+      "points": [
+        [
+          2708.695652173913,
+          4034.782608695652
+        ],
+        [
+          2847.826086956522,
+          4152.173913043478
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "img57_right.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

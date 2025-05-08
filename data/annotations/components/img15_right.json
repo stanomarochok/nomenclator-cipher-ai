@@ -1,0 +1,128 @@
+{
+  "version": "5.2.1",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen-no-category",
+      "points": [
+        [
+          2162.9629629629626,
+          2362.9629629629626
+        ],
+        [
+          0,
+          2925.9259259259256
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          0,
+          692.5925925925925
+        ],
+        [
+          696.2962962962965,
+          2344.4444444444443
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          1014.8148148148148,
+          733.3333333333333
+        ],
+        [
+          1729.6296296296296,
+          2296.296296296296
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          414.8148148148148,
+          133.33333333333331
+        ],
+        [
+          1518.5185185185182,
+          314.8148148148148
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-page-number",
+      "points": [
+        [
+          2274.074074074074,
+          44.44444444444444
+        ],
+        [
+          2403.7037037037035,
+          140.74074074074073
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          2162.9629629629626,
+          251.85185185185185
+        ],
+        [
+          0,
+          655.5555555555555
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          391.304347826087,
+          113.04347826086956
+        ],
+        [
+          0,
+          365.2173913043478
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {}
+    }
+  ],
+  "imagePath": "img15_right.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

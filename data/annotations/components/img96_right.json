@@ -1,0 +1,207 @@
+{
+  "version": "5.6.0a0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          28.571428571428896,
+          1039.2857142857147
+        ],
+        [
+          2092.857142857143,
+          1275.0000000000002
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          78.5714285714289,
+          1317.8571428571431
+        ],
+        [
+          2050.0,
+          1589.2857142857144
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-nulls",
+      "points": [
+        [
+          85.71428571428578,
+          1632.1428571428573
+        ],
+        [
+          1728.5714285714284,
+          1789.2857142857144
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          35.71428571428578,
+          525.0000000000003
+        ],
+        [
+          2200.0,
+          932.1428571428576
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-page-number",
+      "points": [
+        [
+          2314.2857142857147,
+          339.2857142857147
+        ],
+        [
+          2442.857142857143,
+          432.14285714285745
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          528.5714285714289,
+          360.7142857142861
+        ],
+        [
+          1650.0,
+          489.2857142857147
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "page-number",
+      "points": [
+        [
+          2421.4285714285716,
+          4139.285714285715
+        ],
+        [
+          2542.857142857143,
+          4225.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          0,
+          289.2857142857147
+        ],
+        [
+          2521.4285714285716,
+          4075.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          892.8571428571431,
+          1925.0000000000002
+        ],
+        [
+          1685.7142857142853,
+          3089.2857142857147
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          64.28571428571468,
+          1910.714285714286
+        ],
+        [
+          700.0,
+          3032.142857142857
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          0,
+          339.2857142857147
+        ],
+        [
+          442.8571428571431,
+          510.7142857142861
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "img96_right.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

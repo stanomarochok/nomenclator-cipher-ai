@@ -1,0 +1,207 @@
+{
+  "version": "5.5.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          2701.7241379310344,
+          4062.068965517242
+        ],
+        [
+          87.93103448275906,
+          317.2413793103448
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "page-number",
+      "points": [
+        [
+          2633.333333333333,
+          4146.296296296296
+        ],
+        [
+          2720.3703703703695,
+          4205.555555555556
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-page-number",
+      "points": [
+        [
+          2642.592592592592,
+          322.22222222222223
+        ],
+        [
+          2553.7037037037035,
+          411.1111111111111
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          198.1481481481478,
+          372.2222222222222
+        ],
+        [
+          675.9259259259256,
+          540.7407407407408
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          2229.6296296296296,
+          396.29629629629625
+        ],
+        [
+          620.37037037037,
+          546.2962962962963
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          296.2962962962961,
+          594.4444444444445
+        ],
+        [
+          2420.3703703703704,
+          901.8518518518518
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-nulls",
+      "points": [
+        [
+          281.4814814814813,
+          970.3703703703703
+        ],
+        [
+          1538.8888888888887,
+          1085.1851851851852
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          285.18518518518476,
+          1116.6666666666665
+        ],
+        [
+          1442.5925925925922,
+          1320.3703703703702
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          2022.2222222222217,
+          1548.148148148148
+        ],
+        [
+          277.7777777777774,
+          1316.6666666666665
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          277.7777777777774,
+          1590.7407407407406
+        ],
+        [
+          1212.9629629629626,
+          3162.9629629629626
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          1312.9629629629626,
+          1548.148148148148
+        ],
+        [
+          2112.9629629629626,
+          2983.333333333333
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "img163_right.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

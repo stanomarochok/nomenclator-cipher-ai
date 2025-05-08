@@ -1,0 +1,207 @@
+{
+  "version": "5.5.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          836.8421052631579,
+          273.6842105263158
+        ],
+        [
+          3400,
+          4042.1052631578946
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "page-number",
+      "points": [
+        [
+          842.1052631578948,
+          4121.052631578947
+        ],
+        [
+          1052.6315789473683,
+          4273.684210526315
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-page-number",
+      "points": [
+        [
+          875.6097560975609,
+          473.17073170731703
+        ],
+        [
+          1031.7073170731705,
+          570.7317073170731
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          953.6585365853658,
+          360.9756097560975
+        ],
+        [
+          1568.2926829268292,
+          553.6585365853658
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          1841.4634146341461,
+          326.8292682926829
+        ],
+        [
+          3273.170731707317,
+          551.2195121951219
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          1178.0487804878048,
+          546.3414634146341
+        ],
+        [
+          3378.048780487805,
+          907.3170731707316
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          1178.0487804878048,
+          943.9024390243902
+        ],
+        [
+          3107.3170731707314,
+          1226.8292682926829
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-nulls",
+      "points": [
+        [
+          1190.2439024390244,
+          1263.4146341463413
+        ],
+        [
+          2148.780487804878,
+          1446.341463414634
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          1163.4146341463413,
+          1487.8048780487804
+        ],
+        [
+          2914.6341463414633,
+          1743.90243902439
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          1100.0,
+          1846.341463414634
+        ],
+        [
+          2143.90243902439,
+          3470.731707317073
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          2314.6341463414633,
+          1831.7073170731705
+        ],
+        [
+          3139.0243902439024,
+          3295.121951219512
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "img43_left.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

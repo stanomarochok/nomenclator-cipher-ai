@@ -1,0 +1,207 @@
+{
+  "version": "5.5.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          815.7894736842106,
+          289.4736842105263
+        ],
+        [
+          3400,
+          4100.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "page-number",
+      "points": [
+        [
+          805.2631578947369,
+          4163.157894736842
+        ],
+        [
+          1000.0,
+          4236.8421052631575
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-page-number",
+      "points": [
+        [
+          870.1754385964912,
+          447.3684210526315
+        ],
+        [
+          1010.5263157894735,
+          563.1578947368421
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          991.2280701754385,
+          342.1052631578947
+        ],
+        [
+          1663.1578947368419,
+          556.1403508771929
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          1736.8421052631577,
+          340.3508771929824
+        ],
+        [
+          2838.5964912280697,
+          563.1578947368421
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          1143.8596491228068,
+          538.5964912280701
+        ],
+        [
+          3396.491228070175,
+          908.7719298245613
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-nulls",
+      "points": [
+        [
+          1121.0526315789473,
+          985.9649122807017
+        ],
+        [
+          2359.649122807017,
+          1145.6140350877192
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          2468.4210526315787,
+          908.7719298245613
+        ],
+        [
+          3368.4210526315787,
+          1122.8070175438595
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          1142.1052631578946,
+          1191.2280701754385
+        ],
+        [
+          3305.2631578947367,
+          1429.8245614035086
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          1061.4035087719296,
+          1503.5087719298244
+        ],
+        [
+          2050.877192982456,
+          3233.333333333333
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          2075.438596491228,
+          1498.2456140350876
+        ],
+        [
+          2947.368421052631,
+          3228.070175438596
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "img37_left.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

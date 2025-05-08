@@ -1,0 +1,81 @@
+{
+  "version": "5.6.0a0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          357.14285714285734,
+          560.7142857142861
+        ],
+        [
+          1242.8571428571431,
+          2232.142857142857
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-page-number",
+      "points": [
+        [
+          2564.2857142857147,
+          267.85714285714323
+        ],
+        [
+          2728.5714285714284,
+          403.5714285714289
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          185.71428571428578,
+          260.7142857142861
+        ],
+        [
+          2835.7142857142853,
+          4003.5714285714284
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "page-number",
+      "points": [
+        [
+          2742.857142857143,
+          4075.0
+        ],
+        [
+          2864.2857142857138,
+          4146.428571428572
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "img83_right.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}

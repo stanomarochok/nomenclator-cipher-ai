@@ -1,0 +1,225 @@
+{
+  "version": "5.5.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "key-nomen",
+      "points": [
+        [
+          798.2758620689649,
+          320.6896551724138
+        ],
+        [
+          3370.689655172414,
+          4044.8275862068967
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "page-number",
+      "points": [
+        [
+          768.1818181818181,
+          4169.696969696969
+        ],
+        [
+          857.5757575757575,
+          4221.212121212121
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-page-number",
+      "points": [
+        [
+          827.2727272727273,
+          340.9090909090909
+        ],
+        [
+          930.3030303030303,
+          437.8787878787879
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-date",
+      "points": [
+        [
+          968.1818181818181,
+          353.030303030303
+        ],
+        [
+          1518.181818181818,
+          545.4545454545454
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-title",
+      "points": [
+        [
+          1734.8484848484848,
+          383.3333333333333
+        ],
+        [
+          2912.121212121212,
+          559.090909090909
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-letters",
+      "points": [
+        [
+          1086.3636363636363,
+          592.4242424242424
+        ],
+        [
+          3231.8181818181815,
+          1004.5454545454545
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          1110.6060606060605,
+          1048.4848484848485
+        ],
+        [
+          3196.969696969697,
+          1231.8181818181818
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-vertical-pairs",
+      "points": [
+        [
+          1103.030303030303,
+          1268.181818181818
+        ],
+        [
+          3190.9090909090905,
+          1450.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-nulls",
+      "points": [
+        [
+          1104.5454545454545,
+          1503.030303030303
+        ],
+        [
+          3025.7575757575755,
+          1625.7575757575758
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          1101.5151515151515,
+          1769.6969696969695
+        ],
+        [
+          1715.151515151515,
+          2919.6969696969695
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          1854.5454545454545,
+          1796.969696969697
+        ],
+        [
+          2433.333333333333,
+          3019.6969696969695
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    },
+    {
+      "label": "key-nomen-horizontal-pairs",
+      "points": [
+        [
+          2586.363636363636,
+          1790.9090909090908
+        ],
+        [
+          3248.4848484848485,
+          2945.4545454545455
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "rectangle",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "img151_left.jpg",
+  "imageHeight": 4400,
+  "imageWidth": 3400
+}
