@@ -7,27 +7,46 @@ This project provides a modular pipeline for processing annotated images of hist
 ## 📁 Project Structure
 
 project_root/
-├── data/
-│ ├── images/ # Shared source images
-│ └── annotations/
-│ ├── page_segmentation/ # JSON annotations for segmentation
-│ ├── word_symbol_detection/ # JSON or YOLO annotations
-│ └── classification_subparts/ # (Optional) classification labels
-├── outputs/
-│ ├── page_segmentation/
-│ ├── word_symbol_detection/
-│ └── classification_subparts/
-├── src/
-│ ├── preprocessing/
-│ │ ├── split_images.py
-│ │ ├── crop_from_json.py
-│ ├── training/
-│ │ └── train_yolo.py
-│ ├── evaluation/
-│ ├── inference/
-│ ├── dataset_vizualization.py
-│ └── main.py # Central script for all tasks
 
+├── data/
+
+│ ├── images/ # Shared source images
+
+│ └── annotations/
+
+│ ├── page_segmentation/ # JSON annotations for segmentation
+
+│ ├── word_symbol_detection/ # JSON or YOLO annotations
+
+│ └── classification_subparts/ # (Optional) classification labels
+
+├── outputs/
+
+│ ├── page_segmentation/
+
+│ ├── word_symbol_detection/
+
+│ └── classification_subparts/
+
+├── src/
+
+│ ├── preprocessing/
+
+│ │ ├── split_images.py
+
+│ │ ├── crop_from_json.py
+
+│ ├── training/
+
+│ │ └── train_yolo.py
+
+│ ├── evaluation/
+
+│ ├── inference/
+
+│ ├── dataset_vizualization.py
+
+│ └── main.py # Central script for all tasks
 
 ---
 
