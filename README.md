@@ -14,37 +14,37 @@ project_root/
 
 │ └── annotations/
 
-│ ├── page_segmentation/ # JSON annotations for segmentation
+│   ├── page_segmentation/ # JSON annotations for segmentation
 
-│ ├── word_symbol_detection/ # JSON or YOLO annotations
+│   ├── word_symbol_detection/ # JSON or YOLO annotations
 
-│ └── classification_subparts/ # (Optional) classification labels
+│   └── classification_subparts/ # (Optional) classification labels
 
 ├── outputs/
 
-│ ├── page_segmentation/
+│   ├── page_segmentation/
 
-│ ├── word_symbol_detection/
+│   ├── word_symbol_detection/
 
-│ └── classification_subparts/
+│   └── classification_subparts/
 
 ├── src/
 
 │ ├── preprocessing/
 
-│ │ ├── split_images.py
+│   ├── split_images.py
 
-│ │ ├── crop_from_json.py
+│   ├── crop_from_json.py
+
+│   ├── dataset_vizualization.py
 
 │ ├── training/
 
-│ │ └── train_yolo.py
+│   └── train_yolo.py
 
 │ ├── evaluation/
 
 │ ├── inference/
-
-│ ├── dataset_vizualization.py
 
 │ └── main.py # Central script for all tasks
 
