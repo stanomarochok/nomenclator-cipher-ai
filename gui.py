@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 from processor import CipherKeyProcessor
 from classifier import Classifier
 
+
 class CipherKeyApp:
     def __init__(self, root):
         """Initialize the GUI application with a fixed window size."""
@@ -75,12 +76,14 @@ class CipherKeyApp:
         self.canvas = Canvas(self.image_frame, bg="gray")
         self.canvas.pack(fill="both", expand=True)
 
-        Button(self.control_frame, text="Select Images/Folder", command=self.select_images_or_folder).pack(fill="x", pady=20)
+        Button(self.control_frame, text="Select Images/Folder", command=self.select_images_or_folder).pack(fill="x",
+                                                                                                           pady=20)
 
         self.categories = {
             "Preprocessing": ["Binarization", "Gaussian Blur", "Contrast Adjustment", "Sharpening"],
-            "Processing Steps": ["Segment Page", "Detect Words Symbols", "All Objects Detection", "Detect Table Structure",
-                              "Map Plaintext to Ciphertext", "HTR", "Classification"]
+            "Processing Steps": ["Segment Page", "Detect Words Symbols", "All Objects Detection",
+                                 "Detect Table Structure",
+                                 "Map Plaintext to Ciphertext", "HTR", "Classification"]
         }
         self.subcategory_frames = {}
         self.active_subcategory = None
@@ -103,7 +106,8 @@ class CipherKeyApp:
             frame = self.subcategory_frames[category]
             for subcat in subcategories:
                 normalized_subcat = subcat.lower().replace(' ', '_')
-                btn = Button(frame, text=f"Step: {subcat}", command=getattr(self, f"step_{normalized_subcat}"), width=15)
+                btn = Button(frame, text=f"Step: {subcat}", command=getattr(self, f"step_{normalized_subcat}"),
+                             width=15)
                 btn.pack(fill="x", padx=30, pady=1)
 
                 properties_frame = Frame(frame)
@@ -113,37 +117,45 @@ class CipherKeyApp:
                     binarization_frame = Frame(properties_frame)
                     binarization_frame.pack(fill="x", pady=2)
                     Label(binarization_frame, text="Binarization").pack(side="left")
-                    self.binarization_scale = Scale(binarization_frame, from_=0, to=255, orient="horizontal", command=self.update_binarization)
+                    self.binarization_scale = Scale(binarization_frame, from_=0, to=255, orient="horizontal",
+                                                    command=self.update_binarization)
                     self.binarization_scale.set(0)
                     self.binarization_scale.pack(side="left", padx=5, expand=True)
-                    Button(binarization_frame, text="Reset", command=lambda: self.reset_slider(self.binarization_scale, 0)).pack(side="left")
+                    Button(binarization_frame, text="Reset",
+                           command=lambda: self.reset_slider(self.binarization_scale, 0)).pack(side="left")
 
                 elif subcat == "Gaussian Blur":
                     gaussian_frame = Frame(properties_frame)
                     gaussian_frame.pack(fill="x", pady=2)
                     Label(gaussian_frame, text="Gaussian Blur").pack(side="left")
-                    self.gaussian_scale = Scale(gaussian_frame, from_=0, to=5, orient="horizontal", command=self.update_gaussian_blur)
+                    self.gaussian_scale = Scale(gaussian_frame, from_=0, to=5, orient="horizontal",
+                                                command=self.update_gaussian_blur)
                     self.gaussian_scale.set(0)
                     self.gaussian_scale.pack(side="left", padx=5, expand=True)
-                    Button(gaussian_frame, text="Reset", command=lambda: self.reset_slider(self.gaussian_scale, 0)).pack(side="left")
+                    Button(gaussian_frame, text="Reset",
+                           command=lambda: self.reset_slider(self.gaussian_scale, 0)).pack(side="left")
 
                 elif subcat == "Contrast Adjustment":
                     contrast_frame = Frame(properties_frame)
                     contrast_frame.pack(fill="x", pady=2)
                     Label(contrast_frame, text="Contrast").pack(side="left")
-                    self.contrast_scale = Scale(contrast_frame, from_=0, to=2, orient="horizontal", command=self.update_contrast, resolution=0.1)
+                    self.contrast_scale = Scale(contrast_frame, from_=0, to=2, orient="horizontal",
+                                                command=self.update_contrast, resolution=0.1)
                     self.contrast_scale.set(0)
                     self.contrast_scale.pack(side="left", padx=5, expand=True)
-                    Button(contrast_frame, text="Reset", command=lambda: self.reset_slider(self.contrast_scale, 0)).pack(side="left")
+                    Button(contrast_frame, text="Reset",
+                           command=lambda: self.reset_slider(self.contrast_scale, 0)).pack(side="left")
 
                 elif subcat == "Sharpening":
                     sharpen_frame = Frame(properties_frame)
                     sharpen_frame.pack(fill="x", pady=2)
                     Label(sharpen_frame, text="Sharpening").pack(side="left")
-                    self.sharpen_scale = Scale(sharpen_frame, from_=0, to=2, orient="horizontal", command=self.update_sharpening, resolution=0.1)
+                    self.sharpen_scale = Scale(sharpen_frame, from_=0, to=2, orient="horizontal",
+                                               command=self.update_sharpening, resolution=0.1)
                     self.sharpen_scale.set(0)
                     self.sharpen_scale.pack(side="left", padx=5, expand=True)
-                    Button(sharpen_frame, text="Reset", command=lambda: self.reset_slider(self.sharpen_scale, 0)).pack(side="left")
+                    Button(sharpen_frame, text="Reset", command=lambda: self.reset_slider(self.sharpen_scale, 0)).pack(
+                        side="left")
 
                 elif subcat == "All Objects Detection":
                     detection_frame = Frame(properties_frame)
@@ -157,10 +169,12 @@ class CipherKeyApp:
                     mask_frame = Frame(properties_frame)
                     mask_frame.pack(fill="x", pady=2)
                     Label(mask_frame, text="Contour Mask Offset").pack(side="left")
-                    self.mask_offset_scale = Scale(mask_frame, from_=0, to=20, orient="horizontal", command=self.update_mask_offset)
+                    self.mask_offset_scale = Scale(mask_frame, from_=0, to=20, orient="horizontal",
+                                                   command=self.update_mask_offset)
                     self.mask_offset_scale.set(5)
                     self.mask_offset_scale.pack(side="left", padx=5, expand=True)
-                    Button(mask_frame, text="Reset", command=lambda: self.reset_slider(self.mask_offset_scale, 5)).pack(side="left")
+                    Button(mask_frame, text="Reset", command=lambda: self.reset_slider(self.mask_offset_scale, 5)).pack(
+                        side="left")
 
                 elif subcat == "Classification":
                     class_frame = Frame(properties_frame)
@@ -170,7 +184,8 @@ class CipherKeyApp:
                     self.model_var.set("resnet50")
                     model_options = ["alexnet", "densenet201", "efficientnet_b7", "inception_v3", "resnet50"]
                     OptionMenu(class_frame, self.model_var, *model_options).pack(side="left")
-                    Button(class_frame, text="Classify Region", command=self.classify_selected_region).pack(side="left", padx=5)
+                    Button(class_frame, text="Classify Region", command=self.classify_selected_region).pack(side="left",
+                                                                                                            padx=5)
 
     def select_images_or_folder(self):
         """Handle selection of individual images or a folder and display them in a grid."""
@@ -181,7 +196,7 @@ class CipherKeyApp:
             folder = filedialog.askdirectory()
             if folder:
                 self.image_paths = [os.path.join(folder, f) for f in os.listdir(folder)
-                                   if f.lower().endswith((".jpg", ".jpeg", ".png"))]
+                                    if f.lower().endswith((".jpg", ".jpeg", ".png"))]
             else:
                 return
 
@@ -308,9 +323,11 @@ class CipherKeyApp:
         if self.is_selecting:
             self.bounding_boxes[self.selected_box_index][2] = self.canvas.canvasx(event.x) / self.scale_factor
             self.bounding_boxes[self.selected_box_index][3] = self.canvas.canvasy(event.y) / self.scale_factor
-            x1, y1, x2, y2 = map(int, [coord * self.scale_factor for coord in self.bounding_boxes[self.selected_box_index]])
+            x1, y1, x2, y2 = map(int,
+                                 [coord * self.scale_factor for coord in self.bounding_boxes[self.selected_box_index]])
             x1, y1 = max(0, min(x1, x2)), max(0, min(y1, y2))
-            x2, y2 = min(self.display_image.shape[1] * self.scale_factor, max(x1, x2)), min(self.display_image.shape[0] * self.scale_factor, max(y1, y2))
+            x2, y2 = min(self.display_image.shape[1] * self.scale_factor, max(x1, x2)), min(
+                self.display_image.shape[0] * self.scale_factor, max(y1, y2))
             self.canvas.delete("temp_rect")
             self.canvas.create_rectangle(x1, y1, x2, y2, outline="red", width=2, tags="temp_rect")
             self.canvas.update()
@@ -348,7 +365,7 @@ class CipherKeyApp:
             cy = (y1 + y2) / 2
             w = abs(x2 - x1)
             h = abs(y2 - y1)
-            if abs(x - cx) < w/4 and abs(y - cy) < h/4:  # Move
+            if abs(x - cx) < w / 4 and abs(y - cy) < h / 4:  # Move
                 dx = x - cx
                 dy = y - cy
                 box[0] += dx
@@ -356,12 +373,17 @@ class CipherKeyApp:
                 box[2] += dx
                 box[3] += dy
             else:  # Resize
-                if x < x1: box[0] = x
-                elif x > x2: box[2] = x
-                if y < y1: box[1] = y
-                elif y > y2: box[3] = y
+                if x < x1:
+                    box[0] = x
+                elif x > x2:
+                    box[2] = x
+                if y < y1:
+                    box[1] = y
+                elif y > y2:
+                    box[3] = y
             box[0], box[1] = max(0, min(box[0], box[2])), max(0, min(box[1], box[3]))
-            box[2], box[3] = min(self.current_image.shape[1], max(box[0], box[2])), min(self.current_image.shape[0], max(box[1], box[3]))
+            box[2], box[3] = min(self.current_image.shape[1], max(box[0], box[2])), min(self.current_image.shape[0],
+                                                                                        max(box[1], box[3]))
             self.update_image()
 
     def remove_selected_box(self):
@@ -447,8 +469,8 @@ class CipherKeyApp:
         sharpen_value = self.sharpen_scale.get() if self.sharpen_scale else 0
         if sharpen_value > 0:
             kernel = np.array([[0, -sharpen_value, 0],
-                             [-sharpen_value, 1 + 4*sharpen_value, -sharpen_value],
-                             [0, -sharpen_value, 0]])
+                               [-sharpen_value, 1 + 4 * sharpen_value, -sharpen_value],
+                               [0, -sharpen_value, 0]])
             img = cv2.filter2D(img, -1, kernel)
 
         self.processed_image = img
@@ -656,7 +678,8 @@ class CipherKeyApp:
             messagebox.showerror("Error", "Run All Objects Detection step first!")
             return
         self.tables = []
-        display_img = cv2.cvtColor(self.processed_image, cv2.COLOR_GRAY2BGR) if self.processed_image is not None else self.display_image.copy()
+        display_img = cv2.cvtColor(self.processed_image,
+                                   cv2.COLOR_GRAY2BGR) if self.processed_image is not None else self.display_image.copy()
 
         boxes = self.detections
         if not boxes:
@@ -680,14 +703,16 @@ class CipherKeyApp:
             for j in range(len(rows[i]) - 1):
                 x1, y1, x2, y2 = map(int, rows[i][j])
                 x3, y3, x4, y4 = map(int, rows[i][j + 1])
-                cv2.line(display_img, ((x1+x2)//2, (y1+y2)//2), ((x3+x4)//2, (y3+y4)//2), (0, 255, 0), 2)
+                cv2.line(display_img, ((x1 + x2) // 2, (y1 + y2) // 2), ((x3 + x4) // 2, (y3 + y4) // 2), (0, 255, 0),
+                         2)
 
             if i < len(rows) - 1:
                 next_row = rows[i + 1]
                 for obj1, obj2 in zip(rows[i], next_row):
                     x1, y1, x2, y2 = map(int, obj1)
                     x3, y3, x4, y4 = map(int, obj2)
-                    cv2.line(display_img, ((x1+x2)//2, (y1+y2)//2), ((x3+x4)//2, (y3+y4)//2), (0, 0, 255), 2)
+                    cv2.line(display_img, ((x1 + x2) // 2, (y1 + y2) // 2), ((x3 + x4) // 2, (y3 + y4) // 2),
+                             (0, 0, 255), 2)
 
         self.display_image = display_img
         self.update_image()
@@ -732,11 +757,17 @@ class CipherKeyApp:
             return
         output_dir = "output"
         os.makedirs(output_dir, exist_ok=True)
-        cv2.imwrite(os.path.join(output_dir, f"processed_{os.path.basename(self.image_paths[self.current_image_index])}"), self.display_image)
+        cv2.imwrite(
+            os.path.join(output_dir, f"processed_{os.path.basename(self.image_paths[self.current_image_index])}"),
+            self.display_image)
         if self.mapping:
-            with open(os.path.join(output_dir, f"mapping_{os.path.basename(self.image_paths[self.current_image_index])}.txt"), "w") as f:
+            with open(os.path.join(output_dir,
+                                   f"mapping_{os.path.basename(self.image_paths[self.current_image_index])}.txt"),
+                      "w") as f:
                 f.write(str(self.mapping))
         if self.htr_results:
-            with open(os.path.join(output_dir, f"htr_{os.path.basename(self.image_paths[self.current_image_index])}.txt"), "w") as f:
+            with open(
+                    os.path.join(output_dir, f"htr_{os.path.basename(self.image_paths[self.current_image_index])}.txt"),
+                    "w") as f:
                 f.write(str(self.htr_results))
         messagebox.showinfo("Info", "Results saved successfully!")
