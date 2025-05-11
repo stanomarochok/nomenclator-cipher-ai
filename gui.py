@@ -8,7 +8,7 @@ from classifier import Classifier
 
 class CipherKeyApp:
     def __init__(self, root):
-        """Initialize the GUI application with a dynamically sized window."""
+        """Initialize the GUI application with a fixed window size."""
         self.root = root
         self.root.title("Nomenclator Cipher Key Processor")
         self.root.resizable(True, True)
@@ -25,28 +25,22 @@ class CipherKeyApp:
         self.htr_results = None
         self.photo = None
         self.step_buttons = {}
-        self.binarization_scale = None
-        self.gaussian_scale = None
-        self.contrast_scale = None
-        self.sharpen_scale = None
         self.thumbnail_photos = []
         self.is_grid_view = True
         self.current_image_index = 0
-        self.selected_region = None
+        self.bounding_boxes = []  # List to store multiple bounding boxes
+        self.selected_box_index = None  # Currently selected box for editing
         self.is_selecting = False
         self.start_x = self.start_y = 0
         self.scale_factor = 1.0
 
         self.setup_gui()
 
-        control_width = 300
-        control_height = self.control_frame.winfo_reqheight()
-        initial_width = control_width + 400
-        initial_height = max(control_height + 50, 800)
-        self.root.geometry(f"{initial_width}x{initial_height}")
+        # Set fixed window size
+        self.root.geometry("1100x900")
 
     def setup_gui(self):
-        """Set up the GUI with file selection, categorized filters, properties, navigation, filepath, and classification controls."""
+        """Set up the GUI with file selection, categorized filters, navigation, and filepath controls."""
         main_frame = Frame(self.root, padx=5, pady=5)
         main_frame.pack(fill="both", expand=True)
 
@@ -73,9 +67,13 @@ class CipherKeyApp:
         self.zoom_frame.pack(fill="x")
         Button(self.zoom_frame, text="Zoom In", command=self.zoom_in).pack(side="left", padx=5)
         Button(self.zoom_frame, text="Zoom Out", command=self.zoom_out).pack(side="left", padx=5)
+        Button(self.zoom_frame, text="Remove Box", command=self.remove_selected_box).pack(side="left", padx=5)
 
         self.image_frame = Frame(self.right_frame)
         self.image_frame.pack(fill="both", expand=True)
+
+        self.canvas = Canvas(self.image_frame, bg="gray")
+        self.canvas.pack(fill="both", expand=True)
 
         Button(self.control_frame, text="Select Images/Folder", command=self.select_images_or_folder).pack(fill="x", pady=20)
 
@@ -97,79 +95,82 @@ class CipherKeyApp:
 
         self.setup_subcategories()
 
-        self.properties_frame = Frame(self.control_frame)
-        self.properties_frame.pack(fill="x", side="bottom", pady=5)
-
-        # Binarization properties
-        binarization_frame = Frame(self.properties_frame)
-        binarization_frame.pack(fill="x", pady=2)
-        Label(binarization_frame, text="Binarization").pack(side="left")
-        self.binarization_scale = Scale(binarization_frame, from_=0, to=255, orient="horizontal", command=self.update_binarization)
-        self.binarization_scale.set(0)
-        self.binarization_scale.pack(side="left", padx=5, expand=True)
-        Button(binarization_frame, text="Reset", command=lambda: self.reset_slider(self.binarization_scale, 0)).pack(side="left")
-
-        # Gaussian Blur properties
-        gaussian_frame = Frame(self.properties_frame)
-        gaussian_frame.pack(fill="x", pady=2)
-        Label(gaussian_frame, text="Gaussian Blur").pack(side="left")
-        self.gaussian_scale = Scale(gaussian_frame, from_=0, to=5, orient="horizontal", command=self.update_gaussian_blur)
-        self.gaussian_scale.set(0)
-        self.gaussian_scale.pack(side="left", padx=5, expand=True)
-        Button(gaussian_frame, text="Reset", command=lambda: self.reset_slider(self.gaussian_scale, 0)).pack(side="left")
-
-        # Contrast Adjustment properties
-        contrast_frame = Frame(self.properties_frame)
-        contrast_frame.pack(fill="x", pady=2)
-        Label(contrast_frame, text="Contrast").pack(side="left")
-        self.contrast_scale = Scale(contrast_frame, from_=0, to=2, orient="horizontal", command=self.update_contrast, resolution=0.1)
-        self.contrast_scale.set(0)
-        self.contrast_scale.pack(side="left", padx=5, expand=True)
-        Button(contrast_frame, text="Reset", command=lambda: self.reset_slider(self.contrast_scale, 0)).pack(side="left")
-
-        # Sharpening properties
-        sharpen_frame = Frame(self.properties_frame)
-        sharpen_frame.pack(fill="x", pady=2)
-        Label(sharpen_frame, text="Sharpening").pack(side="left")
-        self.sharpen_scale = Scale(sharpen_frame, from_=0, to=2, orient="horizontal", command=self.update_sharpening, resolution=0.1)
-        self.sharpen_scale.set(0)
-        self.sharpen_scale.pack(side="left", padx=5, expand=True)
-        Button(sharpen_frame, text="Reset", command=lambda: self.reset_slider(self.sharpen_scale, 0)).pack(side="left")
-
-        Button(self.control_frame, text="Save Results", command=self.save_results).pack(fill="x", pady=5)
+        Button(self.control_frame, text="Save Results", command=self.save_results).pack(fill="x", pady=5, side="bottom")
 
     def setup_subcategories(self):
-        """Set up controls for each subcategory."""
+        """Set up controls for each subcategory, nesting properties and substeps."""
         for category, subcategories in self.categories.items():
             frame = self.subcategory_frames[category]
             for subcat in subcategories:
-                if subcat in ["Binarization", "Gaussian Blur", "Contrast Adjustment", "Sharpening"]:
-                    normalized_subcat = subcat.lower().replace(' ', '_')
-                    btn = Button(frame, text=f"Step: {subcat}", command=getattr(self, f"step_{normalized_subcat}"), width=15)
-                    btn.pack(fill="x", padx=30, pady=1)
+                normalized_subcat = subcat.lower().replace(' ', '_')
+                btn = Button(frame, text=f"Step: {subcat}", command=getattr(self, f"step_{normalized_subcat}"), width=15)
+                btn.pack(fill="x", padx=30, pady=1)
+
+                properties_frame = Frame(frame)
+                properties_frame.pack(fill="x", padx=40)
+
+                if subcat == "Binarization":
+                    binarization_frame = Frame(properties_frame)
+                    binarization_frame.pack(fill="x", pady=2)
+                    Label(binarization_frame, text="Binarization").pack(side="left")
+                    self.binarization_scale = Scale(binarization_frame, from_=0, to=255, orient="horizontal", command=self.update_binarization)
+                    self.binarization_scale.set(0)
+                    self.binarization_scale.pack(side="left", padx=5, expand=True)
+                    Button(binarization_frame, text="Reset", command=lambda: self.reset_slider(self.binarization_scale, 0)).pack(side="left")
+
+                elif subcat == "Gaussian Blur":
+                    gaussian_frame = Frame(properties_frame)
+                    gaussian_frame.pack(fill="x", pady=2)
+                    Label(gaussian_frame, text="Gaussian Blur").pack(side="left")
+                    self.gaussian_scale = Scale(gaussian_frame, from_=0, to=5, orient="horizontal", command=self.update_gaussian_blur)
+                    self.gaussian_scale.set(0)
+                    self.gaussian_scale.pack(side="left", padx=5, expand=True)
+                    Button(gaussian_frame, text="Reset", command=lambda: self.reset_slider(self.gaussian_scale, 0)).pack(side="left")
+
+                elif subcat == "Contrast Adjustment":
+                    contrast_frame = Frame(properties_frame)
+                    contrast_frame.pack(fill="x", pady=2)
+                    Label(contrast_frame, text="Contrast").pack(side="left")
+                    self.contrast_scale = Scale(contrast_frame, from_=0, to=2, orient="horizontal", command=self.update_contrast, resolution=0.1)
+                    self.contrast_scale.set(0)
+                    self.contrast_scale.pack(side="left", padx=5, expand=True)
+                    Button(contrast_frame, text="Reset", command=lambda: self.reset_slider(self.contrast_scale, 0)).pack(side="left")
+
+                elif subcat == "Sharpening":
+                    sharpen_frame = Frame(properties_frame)
+                    sharpen_frame.pack(fill="x", pady=2)
+                    Label(sharpen_frame, text="Sharpening").pack(side="left")
+                    self.sharpen_scale = Scale(sharpen_frame, from_=0, to=2, orient="horizontal", command=self.update_sharpening, resolution=0.1)
+                    self.sharpen_scale.set(0)
+                    self.sharpen_scale.pack(side="left", padx=5, expand=True)
+                    Button(sharpen_frame, text="Reset", command=lambda: self.reset_slider(self.sharpen_scale, 0)).pack(side="left")
+
                 elif subcat == "All Objects Detection":
-                    btn = Button(frame, text=f"Step: {subcat}", command=self.step_all_objects_detection, width=15)
-                    btn.pack(fill="x", padx=30, pady=1)
-                    mask_frame = Frame(frame)
-                    mask_frame.pack(fill="x", padx=40, pady=1)
+                    detection_frame = Frame(properties_frame)
+                    detection_frame.pack(fill="x", pady=2)
+                    Label(detection_frame, text="Algorithm:").pack(side="left")
+                    self.detection_algo_var = StringVar(self.root)
+                    self.detection_algo_var.set("Contour Masks")
+                    detection_options = ["Contour Masks"]
+                    OptionMenu(detection_frame, self.detection_algo_var, *detection_options).pack(side="left")
+
+                    mask_frame = Frame(properties_frame)
+                    mask_frame.pack(fill="x", pady=2)
                     Label(mask_frame, text="Contour Mask Offset").pack(side="left")
                     self.mask_offset_scale = Scale(mask_frame, from_=0, to=20, orient="horizontal", command=self.update_mask_offset)
                     self.mask_offset_scale.set(5)
                     self.mask_offset_scale.pack(side="left", padx=5, expand=True)
                     Button(mask_frame, text="Reset", command=lambda: self.reset_slider(self.mask_offset_scale, 5)).pack(side="left")
+
                 elif subcat == "Classification":
-                    class_frame = Frame(frame)
-                    class_frame.pack(fill="x", padx=30, pady=1)
+                    class_frame = Frame(properties_frame)
+                    class_frame.pack(fill="x", pady=2)
                     Label(class_frame, text="Model:").pack(side="left")
                     self.model_var = StringVar(self.root)
                     self.model_var.set("resnet50")
                     model_options = ["alexnet", "densenet201", "efficientnet_b7", "inception_v3", "resnet50"]
                     OptionMenu(class_frame, self.model_var, *model_options).pack(side="left")
                     Button(class_frame, text="Classify Region", command=self.classify_selected_region).pack(side="left", padx=5)
-                else:
-                    normalized_subcat = subcat.lower().replace(' ', '_')
-                    btn = Button(frame, text=f"Step: {subcat}", command=getattr(self, f"step_{normalized_subcat}"), width=15)
-                    btn.pack(fill="x", padx=30, pady=1)
 
     def select_images_or_folder(self):
         """Handle selection of individual images or a folder and display them in a grid."""
@@ -199,29 +200,30 @@ class CipherKeyApp:
         self.prev_button.pack()
         self.next_button.pack()
 
-        for widget in self.image_frame.winfo_children():
-            widget.destroy()
+        # Clear the main canvas without destroying it
+        self.canvas.delete("all")
 
-        canvas = Canvas(self.image_frame)
-        scrollbar = Scrollbar(self.image_frame, orient="vertical", command=canvas.yview)
-        scrollable_frame = Frame(canvas)
+        # Create a new canvas for the grid view inside self.canvas
+        grid_canvas = Canvas(self.image_frame)
+        grid_canvas.pack(side="top", fill="both", expand=True)
+        scrollbar = Scrollbar(self.image_frame, orient="vertical", command=grid_canvas.yview)
+        scrollbar.pack(side="right", fill="y")
+        scrollable_frame = Frame(grid_canvas)
 
         scrollable_frame.bind(
             "<Configure>",
-            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+            lambda e: grid_canvas.configure(scrollregion=grid_canvas.bbox("all"))
         )
 
-        canvas.configure(yscrollcommand=scrollbar.set)
-        canvas.pack(side="left", fill="both", expand=True)
-        scrollbar.pack(side="right", fill="y")
-        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        grid_canvas.configure(yscrollcommand=scrollbar.set)
+        grid_canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
 
         self.thumbnail_photos = []
         thumbnail_size = (150, 150)
 
         window_width = self.image_frame.winfo_width()
         if window_width <= 1:
-            window_width = 1200
+            window_width = 800
         cols = max(1, window_width // (thumbnail_size[0] + 10))
 
         for idx, img_path in enumerate(self.image_paths):
@@ -240,10 +242,11 @@ class CipherKeyApp:
                 print(f"Error loading image {img_path}: {e}")
                 continue
 
-        self.adjust_window_size()
+        # Ensure the grid canvas is destroyed when switching to single image view
+        self.grid_canvas = grid_canvas  # Store reference to destroy later
 
     def display_single_image(self, img_path, index):
-        """Display a single image in full quality with region selection."""
+        """Display a single image, fitting it to the canvas."""
         self.is_grid_view = False
         self.current_image_index = index
         self.back_button.pack()
@@ -251,10 +254,11 @@ class CipherKeyApp:
         self.next_button.pack()
         self.update_filepath_label()
 
-        for widget in self.image_frame.winfo_children():
-            widget.destroy()
+        # Destroy the grid canvas if it exists
+        if hasattr(self, 'grid_canvas'):
+            self.grid_canvas.destroy()
+            delattr(self, 'grid_canvas')
 
-        # Load as grayscale and convert to BGR for consistent processing
         self.current_image = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
         if self.current_image is None:
             messagebox.showerror("Error", f"Failed to load image: {img_path}")
@@ -268,16 +272,15 @@ class CipherKeyApp:
         self.tables = None
         self.mapping = None
         self.htr_results = None
-        self.selected_region = None
+        self.bounding_boxes = []
+        self.selected_box_index = None
 
-        # Calculate initial scale_factor to fit the image in the window
-        canvas_width = self.image_frame.winfo_width() or 400
-        canvas_height = self.image_frame.winfo_height() or 400
+        canvas_width = self.canvas.winfo_width() or 800
+        canvas_height = self.canvas.winfo_height() or 1200
         img_height, img_width = self.current_image.shape[:2]
         self.scale_factor = min(canvas_width / img_width, canvas_height / img_height)
 
-        self.canvas = Canvas(self.image_frame, bg="gray", cursor="cross")
-        self.canvas.pack(fill="both", expand=True)
+        self.canvas.delete("all")
         self.canvas.bind("<Configure>", self.update_image)
         self.canvas.bind("<Button-1>", self.start_selection)
         self.canvas.bind("<B1-Motion>", self.update_selection)
@@ -287,65 +290,96 @@ class CipherKeyApp:
         self.canvas.bind("<Button-4>", self.zoom_with_scroll)
         self.canvas.bind("<Button-5>", self.zoom_with_scroll)
 
-        self.adjust_window_size()
         self.update_image()
 
     def start_selection(self, event):
-        """Start selecting a region."""
+        """Start selecting a new region, clearing existing boxes."""
         self.is_selecting = True
         self.start_x = self.canvas.canvasx(event.x) / self.scale_factor
         self.start_y = self.canvas.canvasy(event.y) / self.scale_factor
-        self.selected_region = [self.start_x, self.start_y, self.start_x, self.start_y]
+        self.bounding_boxes = []  # Clear all existing boxes
+        self.selected_box_index = None
+        self.bounding_boxes.append([self.start_x, self.start_y, self.start_x, self.start_y])
+        self.selected_box_index = 0
         self.update_image()
 
     def update_selection(self, event):
-        """Update the region during selection."""
+        """Update the region during selection and draw the bounding box on the fly."""
         if self.is_selecting:
-            self.selected_region[2] = self.canvas.canvasx(event.x) / self.scale_factor
-            self.selected_region[3] = self.canvas.canvasy(event.y) / self.scale_factor
-            self.update_image()
+            self.bounding_boxes[self.selected_box_index][2] = self.canvas.canvasx(event.x) / self.scale_factor
+            self.bounding_boxes[self.selected_box_index][3] = self.canvas.canvasy(event.y) / self.scale_factor
+            x1, y1, x2, y2 = map(int, [coord * self.scale_factor for coord in self.bounding_boxes[self.selected_box_index]])
+            x1, y1 = max(0, min(x1, x2)), max(0, min(y1, y2))
+            x2, y2 = min(self.display_image.shape[1] * self.scale_factor, max(x1, x2)), min(self.display_image.shape[0] * self.scale_factor, max(y1, y2))
+            self.canvas.delete("temp_rect")
+            self.canvas.create_rectangle(x1, y1, x2, y2, outline="red", width=2, tags="temp_rect")
+            self.canvas.update()
 
     def end_selection(self, event):
         """End region selection."""
         self.is_selecting = False
-        self.selected_region[2] = self.canvas.canvasx(event.x) / self.scale_factor
-        self.selected_region[3] = self.canvas.canvasy(event.y) / self.scale_factor
-        x1, y1, x2, y2 = map(int, self.selected_region)
-        self.selected_region = [min(x1, x2), min(y1, y2), max(x1, x2), max(y1, y2)]
+        if self.selected_box_index is not None:
+            self.bounding_boxes[self.selected_box_index][2] = self.canvas.canvasx(event.x) / self.scale_factor
+            self.bounding_boxes[self.selected_box_index][3] = self.canvas.canvasy(event.y) / self.scale_factor
+            x1, y1, x2, y2 = map(int, self.bounding_boxes[self.selected_box_index])
+            self.bounding_boxes[self.selected_box_index] = [min(x1, x2), min(y1, y2), max(x1, x2), max(y1, y2)]
         self.update_image()
 
     def adjust_region(self, event):
         """Adjust the selected region with right-click (move or resize)."""
-        if self.selected_region:
-            x, y = self.canvas.canvasx(event.x) / self.scale_factor, self.canvas.canvasy(event.y) / self.scale_factor
-            cx = (self.selected_region[0] + self.selected_region[2]) / 2
-            cy = (self.selected_region[1] + self.selected_region[3]) / 2
-            w = abs(self.selected_region[2] - self.selected_region[0])
-            h = abs(self.selected_region[3] - self.selected_region[1])
-            if abs(x - cx) < w/4 and abs(y - cy) < h/4:
+        x, y = self.canvas.canvasx(event.x) / self.scale_factor, self.canvas.canvasy(event.y) / self.scale_factor
+        self.selected_box_index = None
+
+        # Find the closest box to the click
+        for idx, box in enumerate(self.bounding_boxes):
+            x1, y1, x2, y2 = box
+            cx = (x1 + x2) / 2
+            cy = (y1 + y2) / 2
+            w = abs(x2 - x1)
+            h = abs(y2 - y1)
+            if (x1 - 10 <= x <= x2 + 10) and (y1 - 10 <= y <= y2 + 10):
+                self.selected_box_index = idx
+                break
+
+        if self.selected_box_index is not None:
+            box = self.bounding_boxes[self.selected_box_index]
+            x1, y1, x2, y2 = box
+            cx = (x1 + x2) / 2
+            cy = (y1 + y2) / 2
+            w = abs(x2 - x1)
+            h = abs(y2 - y1)
+            if abs(x - cx) < w/4 and abs(y - cy) < h/4:  # Move
                 dx = x - cx
                 dy = y - cy
-                self.selected_region[0] += dx
-                self.selected_region[1] += dy
-                self.selected_region[2] += dx
-                self.selected_region[3] += dy
-            else:
-                if x < self.selected_region[0]: self.selected_region[0] = x
-                elif x > self.selected_region[2]: self.selected_region[2] = x
-                if y < self.selected_region[1]: self.selected_region[1] = y
-                elif y > self.selected_region[3]: self.selected_region[3] = y
-            self.selected_region = [max(0, min(self.selected_region[0], self.selected_region[2])),
-                                 max(0, min(self.selected_region[1], self.selected_region[3])),
-                                 min(self.current_image.shape[1], max(self.selected_region[0], self.selected_region[2])),
-                                 min(self.current_image.shape[0], max(self.selected_region[1], self.selected_region[3]))]
+                box[0] += dx
+                box[1] += dy
+                box[2] += dx
+                box[3] += dy
+            else:  # Resize
+                if x < x1: box[0] = x
+                elif x > x2: box[2] = x
+                if y < y1: box[1] = y
+                elif y > y2: box[3] = y
+            box[0], box[1] = max(0, min(box[0], box[2])), max(0, min(box[1], box[3]))
+            box[2], box[3] = min(self.current_image.shape[1], max(box[0], box[2])), min(self.current_image.shape[0], max(box[1], box[3]))
+            self.update_image()
+
+    def remove_selected_box(self):
+        """Remove the currently selected bounding box."""
+        if self.selected_box_index is not None:
+            self.bounding_boxes.pop(self.selected_box_index)
+            self.selected_box_index = None
             self.update_image()
 
     def classify_selected_region(self):
         """Classify the selected region using the chosen model."""
-        if not self.selected_region or not self.current_image or self.is_grid_view:
+        if not self.bounding_boxes or self.current_image is None or self.is_grid_view:
             messagebox.showerror("Error", "Please select a region on an image!")
             return
-        x1, y1, x2, y2 = map(int, [coord * self.scale_factor for coord in self.selected_region])
+        if self.selected_box_index is None:
+            messagebox.showerror("Error", "Please select a bounding box to classify!")
+            return
+        x1, y1, x2, y2 = map(int, [coord * self.scale_factor for coord in self.bounding_boxes[self.selected_box_index]])
         x1, y1 = max(0, min(x1, x2)), max(0, min(y1, y2))
         x2, y2 = min(self.current_image.shape[1], max(x1, x2)), min(self.current_image.shape[0], max(y1, y2))
         if x1 >= x2 or y1 >= y2:
@@ -378,34 +412,6 @@ class CipherKeyApp:
         else:
             self.filepath_label.config(text=self.image_paths[self.current_image_index])
 
-    def adjust_window_size(self):
-        """Adjust the window size based on the image dimensions with a cap to prevent it from being too large."""
-        control_width = 300
-        control_height = self.control_frame.winfo_reqheight()
-        screen_width = self.root.winfo_screenwidth()
-        screen_height = self.root.winfo_screenheight()
-
-        max_window_width = int(screen_width * 0.8)
-        max_window_height = int(screen_height * 0.8)
-
-        padding = 20
-        if self.is_grid_view:
-            window_width = min(control_width + 500, max_window_width)
-            window_height = min(control_height + 500, max_window_height)
-        else:
-            img_height = int(self.current_image.shape[0] * self.scale_factor)
-            window_width = min(1500, max_window_width)
-            desired_height = max(img_height, control_height) + padding
-            window_height = min(desired_height, max_window_height)
-
-        min_window_width = control_width + 400
-        min_window_height = control_height + 50
-
-        window_width = max(window_width, min_window_width)
-        window_height = max(window_height, min_window_height)
-
-        self.root.geometry(f"{window_width}x{window_height}")
-
     def toggle_category(self, category):
         """Toggle the visibility of the subcategory frame for the selected category."""
         if self.active_subcategory:
@@ -416,39 +422,28 @@ class CipherKeyApp:
         else:
             self.active_subcategory = None
 
-        self.root.update()
-        control_height = self.control_frame.winfo_reqheight()
-        current_width = self.root.winfo_width()
-        self.root.geometry(f"{current_width}x{max(control_height + 50, self.root.winfo_height())}")
-
     def apply_preprocessing(self):
         """Apply all active preprocessing steps in order."""
         if self.current_image is None or self.is_grid_view:
             return
         img = self.current_image.copy()
 
-        # Binarization
         binarization_value = self.binarization_scale.get() if self.binarization_scale else 0
         if binarization_value > 0:
-            img = self.processor.preprocess_image(
-                self.image_paths[self.current_image_index],
-                binarization_value,
-                5  # Default mask offset
-            )
+            if len(img.shape) == 3:
+                img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            _, img = cv2.threshold(img, binarization_value, 255, cv2.THRESH_BINARY)
 
-        # Gaussian Blur
         gaussian_value = self.gaussian_scale.get() if self.gaussian_scale else 0
         if gaussian_value > 0:
-            kernel_size = int(gaussian_value) * 2 + 1  # Must be odd
+            kernel_size = int(gaussian_value) * 2 + 1
             img = cv2.GaussianBlur(img, (kernel_size, kernel_size), 0)
 
-        # Contrast Adjustment
         contrast_value = self.contrast_scale.get() if self.contrast_scale else 0
         if contrast_value > 0:
-            alpha = contrast_value  # Contrast factor (0 to 2)
+            alpha = contrast_value
             img = cv2.convertScaleAbs(img, alpha=alpha, beta=0)
 
-        # Sharpening
         sharpen_value = self.sharpen_scale.get() if self.sharpen_scale else 0
         if sharpen_value > 0:
             kernel = np.array([[0, -sharpen_value, 0],
@@ -457,7 +452,7 @@ class CipherKeyApp:
             img = cv2.filter2D(img, -1, kernel)
 
         self.processed_image = img
-        self.display_image = img.copy()
+        self.display_image = img.copy() if len(img.shape) == 2 else cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
         self.update_image()
 
     def update_binarization(self, value):
@@ -481,15 +476,9 @@ class CipherKeyApp:
             self.apply_preprocessing()
 
     def update_mask_offset(self, value):
-        """Update contour mask offset on-the-fly (now under All Objects Detection)."""
-        if self.current_image is not None and not self.is_grid_view and self.processed_image is not None:
-            self.processed_image = self.processor.preprocess_image(
-                self.image_paths[self.current_image_index],
-                self.binarization_scale.get() if self.binarization_scale else 210,
-                int(value)
-            )
-            self.display_image = self.processed_image.copy()
-            self.update_image()
+        """Update contour mask offset on-the-fly."""
+        if self.current_image is not None and not self.is_grid_view:
+            self.step_all_objects_detection()
 
     def reset_slider(self, scale, default_value):
         """Reset the slider to its default value."""
@@ -506,14 +495,15 @@ class CipherKeyApp:
             self.update_mask_offset(default_value)
 
     def update_image(self, event=None):
-        """Update the displayed image, resizing to fit the canvas and draw selected region."""
+        """Update the displayed image, resizing to fit the canvas and draw bounding boxes."""
         if self.display_image is None or self.is_grid_view:
+            self.canvas.delete("all")
             return
 
         canvas_width = self.canvas.winfo_width()
         canvas_height = self.canvas.winfo_height()
         if canvas_width <= 1 or canvas_height <= 1:
-            canvas_width, canvas_height = 400, 400
+            canvas_width, canvas_height = 800, 1200
 
         img_height, img_width = self.display_image.shape[:2]
         new_width = int(img_width * self.scale_factor)
@@ -533,11 +523,13 @@ class CipherKeyApp:
                 x1, y1, x2, y2 = map(int, [b * self.scale_factor for b in box])
                 self.canvas.create_rectangle(x1, y1, x2, y2, outline="green", width=2)
 
-        if self.selected_region and not self.is_selecting:
-            x1, y1, x2, y2 = map(int, [coord * self.scale_factor for coord in self.selected_region])
+        # Draw all bounding boxes
+        for idx, box in enumerate(self.bounding_boxes):
+            x1, y1, x2, y2 = map(int, [coord * self.scale_factor for coord in box])
             x1, y1 = max(0, min(x1, x2)), max(0, min(y1, y2))
             x2, y2 = min(new_width, max(x1, x2)), min(new_height, max(y1, y2))
-            self.canvas.create_rectangle(x1, y1, x2, y2, outline="red", width=2)
+            color = "blue" if idx == self.selected_box_index else "red"
+            self.canvas.create_rectangle(x1, y1, x2, y2, outline=color, width=2, tags=f"box_{idx}")
 
         self.canvas.config(scrollregion=self.canvas.bbox("all"))
 
@@ -552,13 +544,11 @@ class CipherKeyApp:
     def zoom_in(self):
         """Zoom in the image."""
         self.scale_factor = min(3.0, self.scale_factor + 0.1)
-        self.adjust_window_size()
         self.update_image()
 
     def zoom_out(self):
         """Zoom out the image."""
         self.scale_factor = max(0.1, self.scale_factor - 0.1)
-        self.adjust_window_size()
         self.update_image()
 
     def step_binarization(self):
@@ -616,18 +606,46 @@ class CipherKeyApp:
         self.update_image()
 
     def step_all_objects_detection(self):
-        """Execute all objects detection with contour mask offset."""
+        """Execute all objects detection with selected algorithm."""
         if not self.image_paths or self.is_grid_view:
             messagebox.showerror("Error", "Please select an image from the grid!")
             return
         img = self.processed_image if self.processed_image is not None else self.current_image
-        self.detections = self.processor.detect_words_symbols(img)
-        self.display_image = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
-        if self.detections:
-            for box in self.detections:
-                x1, y1, x2, y2 = map(int, box)
-                cv2.rectangle(self.display_image, (x1, y1), (x2, y2), (255, 0, 0), 2)
-        self.update_image()
+        if len(img.shape) == 3:
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+        algo = self.detection_algo_var.get()
+        if algo == "Contour Masks":
+            threshold = 128
+            blurred = cv2.GaussianBlur(img, (5, 5), 0)
+            _, binary = cv2.threshold(blurred, threshold, 255, cv2.THRESH_BINARY_INV)
+
+            contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+            display_img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+            padding = self.mask_offset_scale.get()
+
+            if padding > 0:
+                kernel = np.ones((padding * 2 + 1, padding * 2 + 1), np.uint8)
+                dilated = cv2.dilate(binary, kernel, iterations=1)
+                contours, _ = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+            image_area = img.shape[0] * img.shape[1]
+            overlay = display_img.copy()
+            self.detections = []
+            for contour in contours:
+                area = cv2.contourArea(contour)
+                if 50 < area < image_area * 0.5:
+                    epsilon = 0.01 * cv2.arcLength(contour, True)
+                    approx = cv2.approxPolyDP(contour, epsilon, True)
+                    cv2.fillPoly(overlay, [approx], (0, 0, 255))
+                    x, y, w, h = cv2.boundingRect(contour)
+                    self.detections.append([x, y, x + w, y + h])
+
+            cv2.addWeighted(overlay, 0.4, display_img, 0.6, 0, display_img)
+
+            self.display_image = display_img
+            self.update_image()
 
     def step_detect_table_structure(self):
         """Detect table structure using detected objects with non-straight lines."""
