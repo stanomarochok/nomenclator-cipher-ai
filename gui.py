@@ -342,50 +342,6 @@ class CipherKeyApp:
             self.bounding_boxes[self.selected_box_index] = [min(x1, x2), min(y1, y2), max(x1, x2), max(y1, y2)]
         self.update_image()
 
-    def adjust_region(self, event):
-        """Adjust the selected region with right-click (move or resize)."""
-        x, y = self.canvas.canvasx(event.x) / self.scale_factor, self.canvas.canvasy(event.y) / self.scale_factor
-        self.selected_box_index = None
-
-        # Find the closest box to the click
-        for idx, box in enumerate(self.bounding_boxes):
-            x1, y1, x2, y2 = box
-            cx = (x1 + x2) / 2
-            cy = (y1 + y2) / 2
-            w = abs(x2 - x1)
-            h = abs(y2 - y1)
-            if (x1 - 10 <= x <= x2 + 10) and (y1 - 10 <= y <= y2 + 10):
-                self.selected_box_index = idx
-                break
-
-        if self.selected_box_index is not None:
-            box = self.bounding_boxes[self.selected_box_index]
-            x1, y1, x2, y2 = box
-            cx = (x1 + x2) / 2
-            cy = (y1 + y2) / 2
-            w = abs(x2 - x1)
-            h = abs(y2 - y1)
-            if abs(x - cx) < w / 4 and abs(y - cy) < h / 4:  # Move
-                dx = x - cx
-                dy = y - cy
-                box[0] += dx
-                box[1] += dy
-                box[2] += dx
-                box[3] += dy
-            else:  # Resize
-                if x < x1:
-                    box[0] = x
-                elif x > x2:
-                    box[2] = x
-                if y < y1:
-                    box[1] = y
-                elif y > y2:
-                    box[3] = y
-            box[0], box[1] = max(0, min(box[0], box[2])), max(0, min(box[1], box[3]))
-            box[2], box[3] = min(self.current_image.shape[1], max(box[0], box[2])), min(self.current_image.shape[0],
-                                                                                        max(box[1], box[3]))
-            self.update_image()
-
     def remove_selected_box(self):
         """Remove the currently selected bounding box."""
         if self.selected_box_index is not None:
@@ -517,43 +473,35 @@ class CipherKeyApp:
             self.update_mask_offset(default_value)
 
     def update_image(self, event=None):
-        """Update the displayed image, resizing to fit the canvas and draw bounding boxes."""
-        if self.display_image is None or self.is_grid_view:
-            self.canvas.delete("all")
+        if self.display_image is None:
             return
 
+        # Convert OpenCV image to PIL Image
+        bgr_image = cv2.cvtColor(self.display_image, cv2.COLOR_BGR2RGB)
+        pil_image = Image.fromarray(bgr_image)
+
+        # Resize image to fit canvas
         canvas_width = self.canvas.winfo_width()
         canvas_height = self.canvas.winfo_height()
-        if canvas_width <= 1 or canvas_height <= 1:
-            canvas_width, canvas_height = 800, 1200
 
-        img_height, img_width = self.display_image.shape[:2]
-        new_width = int(img_width * self.scale_factor)
-        new_height = int(img_height * self.scale_factor)
-        resized_image = cv2.resize(self.display_image, (new_width, new_height))
+        img_width, img_height = pil_image.size
+        scale_x = canvas_width / img_width
+        scale_y = canvas_height / img_height
+        self.scale_factor = min(scale_x, scale_y)
 
-        if len(resized_image.shape) == 2:
-            resized_image = cv2.cvtColor(resized_image, cv2.COLOR_GRAY2RGB)
-        pil_image = Image.fromarray(resized_image)
-        self.photo = ImageTk.PhotoImage(pil_image)
+        new_size = (int(img_width * self.scale_factor), int(img_height * self.scale_factor))
+        resized_image = pil_image.resize(new_size, Image.ANTIALIAS)
 
+        # Store and show image
+        self.photo = ImageTk.PhotoImage(resized_image)
         self.canvas.delete("all")
-        self.canvas.create_image(canvas_width // 2, canvas_height // 2, image=self.photo, anchor="center")
-
-        if self.segmentation and not self.is_selecting:
-            for box in self.segmentation:
-                x1, y1, x2, y2 = map(int, [b * self.scale_factor for b in box])
-                self.canvas.create_rectangle(x1, y1, x2, y2, outline="green", width=2)
+        self.canvas.create_image(0, 0, anchor="nw", image=self.photo)
 
         # Draw all bounding boxes
         for idx, box in enumerate(self.bounding_boxes):
-            x1, y1, x2, y2 = map(int, [coord * self.scale_factor for coord in box])
-            x1, y1 = max(0, min(x1, x2)), max(0, min(y1, y2))
-            x2, y2 = min(new_width, max(x1, x2)), min(new_height, max(y1, y2))
-            color = "blue" if idx == self.selected_box_index else "red"
-            self.canvas.create_rectangle(x1, y1, x2, y2, outline=color, width=2, tags=f"box_{idx}")
-
-        self.canvas.config(scrollregion=self.canvas.bbox("all"))
+            x1, y1, x2, y2 = [coord * self.scale_factor for coord in box]
+            color = "blue" if idx != self.selected_box_index else "green"
+            self.canvas.create_rectangle(x1, y1, x2, y2, outline=color, width=2)
 
     def zoom_with_scroll(self, event):
         """Zoom the image with Ctrl + Scroll."""
