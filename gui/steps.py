@@ -73,14 +73,33 @@ def step_segment_page(self):
         return
 
     img = self.processed_image if self.processed_image is not None else self.current_image
-    processed_bgr = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
-    self.segmentation = PAGE_SEGMENTER.segment(processed_bgr)
-    self.display_image = processed_bgr.copy()
+
+    if len(img.shape) == 2:
+        processed_bgr = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+    else:
+        processed_bgr = img.copy()
+
+    model_choice = self.seg_model_var.get()
+    if model_choice == "YOLOv11":
+        self.segmentation = PAGE_SEGMENTER.segment(processed_bgr)
+    else:
+        messagebox.showerror("Error", f"Unknown model selected: {model_choice}")
+        return
+
+    if self.segmentation is None or len(self.segmentation) == 0:
+        messagebox.showinfo("Segmentation", "No segments detected.")
+        self.segmentation = None
+        self.display_image = self.current_image.copy()
+    else:
+        self.display_image = processed_bgr.copy()
+
     self.update_image()
 
 
 def reset_segment_page(self):
     self.segmentation = None
+    self.bounding_boxes = []
+    self.selected_box_index = None
     self.display_image = self.current_image.copy()
     self.update_image()
 
@@ -93,11 +112,16 @@ def step_detect_words_symbols(self):
     img = self.processed_image if self.processed_image is not None else self.current_image
     self.detections = YOLO_DETECTOR.detect(img)
 
-    display_img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR) if len(img.shape) == 2 else img.copy()
-    for box in self.detections:
-        x1, y1, x2, y2 = map(int, box)
-        cv2.rectangle(display_img, (x1, y1), (x2, y2), (255, 0, 0), 2)
-    self.display_image = display_img
+    if self.detections is None or len(self.detections) == 0:
+        messagebox.showinfo("Detection", "No words or symbols detected.")
+        self.display_image = self.current_image.copy()
+    else:
+        display_img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR) if len(img.shape) == 2 else img.copy()
+        for box in self.detections:
+            x1, y1, x2, y2 = map(int, box)
+            cv2.rectangle(display_img, (x1, y1), (x2, y2), (255, 0, 0), 2)
+        self.display_image = display_img
+
     self.update_image()
 
 
@@ -116,16 +140,20 @@ def step_all_objects_detection(self):
     padding = self.mask_offset_scale.get() if hasattr(self, 'mask_offset_scale') else 5
     boxes = CONTOUR_DETECTOR.detect(img)
 
-    display_img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR) if len(img.shape) == 2 else img.copy()
-    overlay = display_img.copy()
-    for box in boxes:
-        x1, y1, x2, y2 = map(int, box)
-        cv2.rectangle(overlay, (x1, y1), (x2, y2), (0, 0, 255), -1)
+    if boxes is None or len(boxes) == 0:
+        messagebox.showinfo("Detection", "No objects detected.")
+        self.display_image = self.current_image.copy()
+    else:
+        display_img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR) if len(img.shape) == 2 else img.copy()
+        overlay = display_img.copy()
+        for box in boxes:
+            x1, y1, x2, y2 = map(int, box)
+            cv2.rectangle(overlay, (x1, y1), (x2, y2), (0, 0, 255), -1)
 
-    cv2.addWeighted(overlay, 0.4, display_img, 0.6, 0, display_img)
+        cv2.addWeighted(overlay, 0.4, display_img, 0.6, 0, display_img)
+        self.display_image = display_img
 
     self.detections = boxes
-    self.display_image = display_img
     self.update_image()
 
 

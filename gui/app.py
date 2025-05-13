@@ -12,7 +12,8 @@ from classifier import Classifier
 from .layout import setup_gui, setup_subcategories
 from .events import (
     display_image_grid, display_single_image, select_images_or_folder,
-    show_previous_image, show_next_image, update_filepath_label
+    show_previous_image, show_next_image, update_filepath_label,
+    toggle_category
 )
 
 from .preprocessing import apply_preprocessing, update_binarization, update_gaussian_blur, update_contrast, update_sharpening, update_mask_offset
@@ -21,7 +22,8 @@ from .steps import (
     step_segment_page, step_detect_words_symbols, step_all_objects_detection,
     remove_selected_box, classify_selected_region, load_custom_model, save_results,
     start_selection, update_selection, end_selection,
-    zoom_with_scroll, start_pan, do_pan, end_pan
+    zoom_with_scroll, start_pan, do_pan, end_pan,
+    reset_segment_page
 )
 
 
@@ -66,15 +68,22 @@ class CipherKeyApp:
 
         self.custom_model_path = None  # For user-selected classifier model
 
+        self.toggle_category = lambda category: toggle_category(self, category)
+
         # Setup UI layout and bindings
         setup_gui(self)
         setup_subcategories(self)
 
     # Public methods to bind actions from layout
     def step_segment_page(self): step_segment_page(self)
+    def reset_segment_page(self): reset_segment_page(self)
+
     def step_detect_words_symbols(self): step_detect_words_symbols(self)
+
     def step_all_objects_detection(self): step_all_objects_detection(self)
+
     def classify_selected_region(self): classify_selected_region(self)
+
     def load_custom_model(self): load_custom_model(self)
 
     def update_image(self, event=None): update_image(self, event)
@@ -107,3 +116,4 @@ class CipherKeyApp:
     def start_pan(self, event): start_pan(self, event)
     def do_pan(self, event): do_pan(self, event)
     def end_pan(self, event): end_pan(self, event)
+

@@ -31,7 +31,7 @@ def update_image(self, event=None):
     self.canvas.create_image(self.offset_x, self.offset_y, anchor="nw", image=self.photo)
 
     # Draw segmentation boxes
-    if self.segmentation and not self.is_selecting:
+    if self.segmentation is not None and len(self.segmentation) > 0 and not self.is_selecting:
         for box in self.segmentation:
             x1, y1, x2, y2 = [b * self.scale_factor for b in box]
             x1 += self.offset_x

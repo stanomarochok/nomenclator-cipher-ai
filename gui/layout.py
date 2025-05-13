@@ -129,3 +129,16 @@ def setup_subcategories(self):
                 model_options = ["alexnet", "densenet201", "efficientnet_b7", "inception_v3", "resnet50", "custom"]
                 OptionMenu(properties_frame, self.model_var, *model_options).pack(side="left")
                 Button(properties_frame, text="Classify Region", command=self.classify_selected_region).pack(side="left", padx=5)
+
+            elif subcat == "Segment Page":
+                seg_frame = Frame(properties_frame)
+                seg_frame.pack(fill="x", pady=2)
+
+                Label(seg_frame, text="Model:").pack(side="left")
+                self.seg_model_var = StringVar(self.root)
+                self.seg_model_var.set("YOLOv11")
+                seg_model_options = ["YOLOv11"]  # future: extend with more options
+                OptionMenu(seg_frame, self.seg_model_var, *seg_model_options).pack(side="left")
+
+                Button(seg_frame, text="Reset", command=self.reset_segment_page).pack(side="left", padx=5)
+

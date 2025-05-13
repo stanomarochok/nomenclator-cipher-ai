@@ -140,3 +140,14 @@ def update_filepath_label(self):
         self.filepath_label.config(text=f"Selected {len(self.image_paths)} images")
     else:
         self.filepath_label.config(text=self.image_paths[self.current_image_index])
+
+
+def toggle_category(self, category):
+    """Toggle the visibility of the subcategory frame for the selected category."""
+    if self.active_subcategory:
+        self.subcategory_frames[self.active_subcategory].pack_forget()
+    if self.active_subcategory != category:
+        self.subcategory_frames[category].pack(fill="x")
+        self.active_subcategory = category
+    else:
+        self.active_subcategory = None
